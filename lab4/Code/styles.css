@@ -1,0 +1,103 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    /* 将背景图片按比例缩放并覆盖整个屏幕 */
+}
+
+#search-box {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+    display: inline-block;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#search-box input[type="text"] {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+}
+
+#search-box button {
+    padding: 8px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+}
+
+#map-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-image: url('济事楼地图.jpg');
+    background-repeat: repeat;
+}
+
+#info-box {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+}
+
+#startup-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('bg.jpg') no-repeat center center;
+    background-size: cover;
+    /* 确保图片按比例缩放 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out;
+    z-index: 2000;
+}
+
+#startup-text {
+    color: blue;
+    font-size: 2em;
+    z-index: 2001;
+    /* 确保文字在图片上层 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

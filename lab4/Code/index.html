@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>济事楼导览系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="startup-screen">
+        <div id="startup-text">济事楼导览地图</div>
+    </div>
+
+    <div id="search-box">
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="搜索房间号、老师、办公室...">
+            <button type="submit">搜索</button>
+        </form>
+    </div>
+
+    <div id="map-container">
+        <img src="济事楼地图.jpg" usemap="#building-map" alt="济事楼平面图" style="opacity: 100; width: 100%; height: auto;">
+        <map name="building-map"></map>
+    </div>
+    <div id="info-box">
+        <p id="info-content"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

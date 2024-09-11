@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Search Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <meta http-equiv='cache-control' content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+
+</head>
+
+<body
+    style="background: white; background-image: url('https://img1.baidu.com/it/u=2524681620,4125785244&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=188') ;background-size: cover;"
+    id="backgroundElement">
+
+    <div class=" navbar">
+        <div class="navbar-inner">
+            <h1 class="text-center" style="color:black;"><b>IMAGE SEARCH</b>&nbsp;&nbsp;&nbsp;
+
+                <svg t="1715619983470" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="4269" width="40" height="40">
+                    <path
+                        d="M723.10784 723.10784a20.48 20.48 0 0 1 28.95872 0l262.43072 262.43072a20.48 20.48 0 0 1-28.96896 28.96896L723.10784 752.06656a20.48 20.48 0 0 1 0-28.95872z"
+                        p-id="4270"></path>
+                    <path d="M433.60256 433.60256m-430.08 0a430.08 430.08 0 1 0 860.16 0 430.08 430.08 0 1 0-860.16 0Z"
+                        p-id="4271">
+                    </path>
+                    <path d="M433.60256 433.60256m-215.04 0a215.04 215.04 0 1 0 430.08 0 215.04 215.04 0 1 0-430.08 0Z"
+                        fill="#EBBA50" p-id="4272"></path>
+                </svg>
+            </h1>
+
+        </div>
+    </div>
+    <div><br></br><br></br>
+    </div>
+
+
+    <center></center>
+
+
+    <div id="main" class="container">
+        <table class="table" style="background: white;border: 1px solid beige;box-shadow: 3px 5px 15px 0px rgba(0, 0, 0, 0.2), 3px 5px 15px 0 rgba(0, 0, 0, 0.19);
+">
+            <tr style="background: lightgrey;">
+                <td><b>Choose your file to upload</b></td>
+                <td><b></b></td>
+            </tr>
+            <tr>
+                <td>
+                    <form method=post enctype=multipart/form-data>
+                        <!--<input data-bind="value: title" type="text" id="inputTask" placeholder="Path to the image" style="width: 150px;">-->
+                        <input type="file" name="file" id="file" required />
+                        <span id="ThumbnailContainer"></span>
+                        <input type=submit value="Search!" onclick="fun()">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </form>
+                </td>
+                <td><b></b></td>
+            </tr>
+
+
+            <tr id="row1" style="display:none;">
+                <td><a href=""><button id="clear" style="display:none;">Clear</button></a></td>
+
+            </tr>
+        </table>
+
+        <div id="buttons" style="display:none; ">
+            <div>
+                <button id="show_favorites" onclick="showFavorites()"
+                    style="width:180px; height:60px;background-color:lightpink; border: 2px solid wheat; border-radius: 15px; font-size:18px">show
+                    favorites</button>
+            </div>
+        </div>
+
+
+    </div>
+    <center>
+        <img id="load" src="/images/ajax-loader.gif" style="height:100px;weight:100px;display:none;">
+    </center>
+    <div class="container">
+        <div style="display: none;" id="resultCounts">共有9条搜索结果：</div>
+        <table id="table" class="table" style="background: white; border: 1px ;display:none;">
+            <tbody>
+                <tr>
+                    <td style="
+    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td0" style="opacity: 1;">
+                            <img id="img0" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(0)">收藏</button>
+                        </div>
+                    </td>
+
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td1" style="opacity: 1;">
+                            <img id="img1" src="" alt="Norway" style="
+                            opacity: 1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+   
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(1)">收藏</button>
+                        </div>
+                    </td>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td2" style="opacity: 1;">
+                            <img id="img2" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(2)">收藏</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="background: white;">
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td3" style="opacity: 1;">
+                            <img id="img3" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(3)">收藏</button>
+                        </div>
+                    </td>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td4" style="opacity: 1;">
+                            <img id="img4" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(4)">收藏</button>
+                        </div>
+                    </td>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td5" style="opacity: 1;">
+                            <img id="img5" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(5)">收藏</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td6" style="opacity: 1;">
+                            <img id="img6" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(6)">收藏</button>
+                        </div>
+                    </td>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td7" style="opacity: 1;">
+                            <img id="img7" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(7)">收藏</button>
+                        </div>
+                    </td>
+                    <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                        <div id="td8" style="opacity: 1;">
+                            <img id="img8" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+                            <button class="favorite-button" onclick="addFavorite(8)">收藏</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <div id="favorite-images"></div>
+
+
+    <style>
+        button {
+            padding: 10px 20px;
+            border: 2px solid palevioletred;
+            border-radius: 5px;
+            background-color: palevioletred color;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-left: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button.selected {
+            background-color: chocolate;
+            border: 2px solid chocolate;
+            color: white;
+            cursor: pointer;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100xh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('https://img1.baidu.com/it/u=2524681620,4125785244&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=188');
+        }
+    </style>
+
+
+
+
+    <script type="text/javascript">
+        let tags = [];
+        let pic_tag = [];
+        let pics = [];
+        let p = [];
+        let relas = new Map();
+        //var backgroundElement = document.getElementById("background");
+
+        // function showFavoriteImages() {
+
+        // }
+        function showThumbnail() {
+            var fileInput = document.getElementById("file");
+            var thumbnailContainer = document.getElementById("ThumbnailContainer");
+            console.log("showThumbnail");
+            console.log(fileInput);
+            fileInput.addEventListener("change", function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                console.log(file);
+                reader.onload = function (e) {
+                    var img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.width = 200;
+
+                    img.height = 200;
+                    thumbnailContainer.innerHTML = "";
+                    thumbnailContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            });
+        }
+
+
+
+        function showFavorites() {
+            var favoriteImagesContainer = document.getElementById("favorite-images");
+
+            var favorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
+            console.log("favorites")
+            console.log(favorites);
+            var hint = document.createElement("span");
+            hint.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My favorites: ";
+            hint.style.fontSize = "40px";
+            hint.style.color = "yellow";
+            favoriteImagesContainer.appendChild(hint);
+            console.log("showFavorites");
+            favorites.forEach(function (favorite) {
+                var img = document.createElement("img");
+                img.style.width = "200px";
+                img.style.height = "200px";
+                img.style.margin = "25px";
+                var src = document.getElementById(favorite);
+                img.src = src.src;
+                favoriteImagesContainer.appendChild(img);
+            });
+        }
+
+        function showFavoriteImages() {
+            var favoriteImagesContainer = document.getElementById("favorite-images");
+            favoriteImagesContainer.innerHTML = "";
+            var favorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
+            console.log("favorites")
+            console.log(favorites);
+        }
+
+
+        function myFunction() {
+
+            document.getElementById("predictedResult").innerHTML = "";
+            $('#clear').hide();
+        }
+        function fun() {
+
+            $('#load').show();
+
+            $("form").submit(function (evt) {
+                //$('#loader-icon').show(); 
+
+                evt.preventDefault();
+
+                //$('#loader-icon').show();
+                var formData = new FormData($(this)[0]);
+
+                $.ajax({
+                    url: 'imgUpload',
+                    type: 'POST',
+                    data: formData,
+                    //async: false,
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+
+                    success: function (response) {
+                        console.log("success")
+
+                        //console.log(response)
+                        tags = response.tags;
+                        pic_tag = response.pic_tag;
+                        //pics = [...new Set(pic_tag.map(item => item[0]))];
+                        pics = [response.image0, response.image1, response.image2, response.image3, response.image4, response.image5, response.image6, response.image7, response.image8]
+                        //console.log(pics)
+                        p = pics.map((value) => value.replace(/\D/g, '')).map(Number)
+                        console.log(p);
+                        // relas = pics.map((value, index) => { return [value, index] });
+                        relas = new Map(p.map((value, index) => [value, index]));
+                        // console.log(relas)
+                        //console.log(pics)
+                        // console.log(tags)
+                        //console.log(pic_tag)
+                        $('#load').hide();
+                        $('#row1').show();
+                        //$('#clear').show();
+                        //console.log(response[1]);
+                        //document.getElementById("predictedResult").innerHTML= response; 
+                        document.getElementById("resultCounts").style.display = "block";
+                        document.getElementById("img0").src = response.image0;
+                        document.getElementById("img1").src = response.image1;
+                        document.getElementById("img2").src = response.image2;
+                        document.getElementById("img3").src = response.image3;
+                        document.getElementById("img4").src = response.image4;
+                        document.getElementById("img5").src = response.image5;
+                        document.getElementById("img6").src = response.image6;
+                        document.getElementById("img7").src = response.image7;
+                        document.getElementById("img8").src = response.image8;
+                        $('#table').show();
+                        $('#clear').show();
+                        var buttonsContainer = document.getElementById("buttons");
+                        buttonsContainer.style.display = "block";
+                        tags.forEach(function (tag) {
+                            var button = document.createElement("button");
+                            button.innerHTML = tag;
+                            button.addEventListener("click", function () {
+                                hide(tag);
+                                button.classList.toggle("selected");
+                            });
+                            buttonsContainer.appendChild(button);
+                        });
+
+                    }
+                });
+                return false;
+            })
+        };
+
+
+        function addFavorite(index) {
+            //var img = document.getElementById("img" + index);
+            var img = "img" + index;
+            console.log(img);
+            var favorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
+            var index = favorites.indexOf(img);
+            if (index == -1) {
+                favorites.push(img);
+            }
+            else {
+                favorites.splice(index, 1);
+            }
+
+            sessionStorage.setItem("favorites", JSON.stringify(favorites));
+            console.log(sessionStorage.getItem("favorites"));
+            updateFavoriteButtons();
+        }
+
+        function updateFavoriteButtons() {
+            var favorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
+            var buttons = document.getElementsByClassName("favorite-button");
+            for (var i = 0; i < buttons.length; i++) {
+                var imageSrc = "img" + i;
+                var img = document.getElementById(imageSrc);
+                if (favorites.includes(imageSrc)) {
+                    buttons[i].classList.add("favorite");
+                    buttons[i].innerHTML = "已收藏";
+                }
+                else {
+                    buttons[i].classList.remove("favorite");
+                    buttons[i].innerHTML = "收藏";
+                }
+            }
+        }
+
+        function hide(banned_tag) {
+            //var img = document.getElementById(imageId);
+            pic_tag.forEach(function (p_t) {
+                if (p_t[1] == banned_tag) {
+                    var td = document.getElementById("td" + relas.get(p_t[0]));
+                    var img = document.getElementById("img" + relas.get(p_t[0]));
+                    // if (td.style.opacity == 1) {
+                    //     console.log("show")
+                    //     console.log(td.style.opacity);
+                    //     td.style.opacity = 0;
+                    //     //button.classList.toggle("selected");
+                    // }
+                    // else {
+                    //     console.log(td.style.opacity);
+                    //     td.style.opacity = 1;
+                    //     //button.classList.toggle("selected");
+                    // }
+                    if (td.style.display === "none") {
+                        td.style.display = "block";
+                    }
+                    else {
+                        td.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        window.onload = function () {
+            updateFavoriteButtons();
+            //showFavoriteImages();
+            showThumbnail();
+        }
+
+    </script>
+</body>
+
+</html>
